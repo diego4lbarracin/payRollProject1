@@ -27,7 +27,7 @@ void ActualizarInfo(){
 void Reporte(){	
 	fstream diego;
 	diego.open("hola.txt");
-	cout<<"TEXTOTOTOOTO"
+	cout<<"TEXTOTOTOOTO";
 }
 
 void ConsultarInfo(){
