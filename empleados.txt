@@ -1,0 +1,3 @@
+CC 1289389 Daniel Esteban Ramírez EB 3 2
+CE 7889323 Pilar Andrea Salazar Corredor ES 5 3
+CC 128943434 Daniel Felipe Aristizábal EM 2 0
