@@ -1,3 +1,3 @@
-CC 1289389 Daniel Esteban Ramírez EB 3 2
-CE 7889323 Pilar Andrea Salazar Corredor ES 5 3
-CC 128943434 Daniel Felipe Aristizábal EM 2 0
+CC  1029641463 Diego Albarracin ES  8  6  24566286.89   21.18   COP
+CE  1059859633 Ashley Pattie    ES 12  16 55255289.29   54.32   COP
+CC  1039441453 David Cuadros    ES 9   4  26224339.19   23.85   COP
