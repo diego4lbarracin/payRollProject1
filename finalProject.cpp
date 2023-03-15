@@ -8,21 +8,19 @@ using namespace std;
 
 void Reporte();
 
-struct infoEmpleado
-{	
-	char tipoDoc[2]; //CC, Cedula Ciudadania, CE, Cedula Extranjeria
-	long numDoc;
-	char nombre[20];
-	char apellido[20];
-	char nivelEducativo[2];//EB, Educacion Basica, EM, Educacion Media, ES, Educacion Superior.
-	int anosExperiencia;
-	int numCertificaciones;
+struct Empleados{
+    string doc;
+    int num_doc;
+    string nombre;
+    string apellido;
+    string nivel_edu;
+    int anios;
+    int certificaciones;
 
-	//necesarios
-	long double salario;
-	double salEnSalariosMinimos;
-	// char moneda[4];
-
+	//para reporte
+	int salario;
+	int salEnMinimos;
+	string moneda;
 };
 
 
@@ -49,13 +47,11 @@ void ActualizarInfo(){
 void Reporte(){	
 	int op=0, i=0;
 	double dollar= 4746.62, salMin= 1160000; 
-	// char usd[4] = "USD";
-
 
 	ifstream arEmpleados;
 	ofstream nomina;
 	// int i=0;
-	infoEmpleado info;
+	Empleados info;
 	// vector <infoEmpleado> info;
 
 	arEmpleados.open("empleados.txt");
@@ -85,28 +81,29 @@ void Reporte(){
 							nomina<<left<<setw(6)<<"Tipo"<<setw(11)<<"Documento"<<setw(14)<<"Nombre"<<setw(14)<<"Apellido"<<setw(14)<<"N.Educativo"<<setw(13)<<"Experiencia"<<setw(14)<<"Certificados"<<setw(18)<<"Salario"<<setw(12)<<"S.Minimos"<<setw(8)<<"Moneda"<<endl;
 							
 							while (!arEmpleados.eof()){
-								arEmpleados>>info.tipoDoc>>info.numDoc>>info.nombre>>info.apellido>>info.nivelEducativo>>info.anosExperiencia>>info.numCertificaciones>>info.salario;
+								arEmpleados>>info.doc>>info.num_doc>>info.nombre>>info.apellido>>info.nivel_edu>>info.anios>>info.certificaciones;
 								
-								info.salEnSalariosMinimos= info.salario/salMin;
-								
-								if (info.tipoDoc=="CE")
+								info.salEnMinimos= info.salario/salMin;
+								if (arEmpleados.eof()==true)
 								{
-									info.salario= info.salario/dollar;
-									nomina<< fixed << showpoint <<setprecision(2);									
-									cout<<left<<setw(6)<<info.tipoDoc<<left<<setw(11)<<info.numDoc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivelEducativo<<setw(13)<<info.anosExperiencia<<setw(14)<<info.numCertificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnSalariosMinimos<<setw(8)<<"USD"<<endl;
-									
-									nomina<<left<<setw(6)<<info.tipoDoc<<left<<setw(11)<<info.numDoc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivelEducativo<<setw(13)<<info.anosExperiencia<<setw(14)<<info.numCertificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnSalariosMinimos<<setw(8)<<"USD"<<endl;
-								}else{
-									nomina<< fixed << showpoint <<setprecision(2);
-									cout<<left<<setw(6)<<info.tipoDoc<<left<<setw(11)<<info.numDoc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivelEducativo<<setw(13)<<info.anosExperiencia<<setw(14)<<info.numCertificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnSalariosMinimos<<setw(8)<<"COP"<<endl;
-									nomina<<left<<setw(6)<<info.tipoDoc<<left<<setw(11)<<info.numDoc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivelEducativo<<setw(13)<<info.anosExperiencia<<setw(14)<<info.numCertificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnSalariosMinimos<<setw(8)<<"COP"<<endl;
+									break;
+								}else{ 
+									if (info.doc.compare("CE")==0)
+										{
+											info.salario= info.salario/dollar;
+											info.moneda = "USD";
+											nomina<< fixed << showpoint <<setprecision(2);									
+											cout<<left<<setw(6)<<info.doc<<left<<setw(11)<<info.num_doc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivel_edu<<setw(13)<<info.anios<<setw(14)<<info.certificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnMinimos<<setw(8)<<info.moneda<<endl;
+											
+											nomina<<left<<setw(6)<<info.doc<<left<<setw(11)<<info.num_doc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivel_edu<<setw(13)<<info.anios<<setw(14)<<info.certificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnMinimos<<setw(8)<<info.moneda<<endl;
+										}else{
+											info.moneda = "COP";
+											cout<<left<<setw(6)<<info.doc<<left<<setw(11)<<info.num_doc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivel_edu<<setw(13)<<info.anios<<setw(14)<<info.certificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnMinimos<<setw(8)<<info.moneda<<endl;
+											
+											nomina<< fixed << showpoint <<setprecision(2);
+											nomina<<left<<setw(6)<<info.doc<<left<<setw(11)<<info.num_doc<<setw(14)<<info.nombre<<setw(14)<<info.apellido<<setw(14)<<info.nivel_edu<<setw(13)<<info.anios<<setw(14)<<info.certificaciones<<"$"<<setw(18)<<info.salario<<setw(12)<<info.salEnMinimos<<setw(8)<<info.moneda<<endl;
+										}
 								}
-									
-									if (arEmpleados.eof())
-									{
-										break;
-									}
-								
 							}
 						}	
 					break;
