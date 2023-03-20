@@ -1,3 +1,3 @@
-CC  1029641463  Diego Albarracin    EB  18   6
-CE  1059859633  Ashley Pattie   ES  12  16 
-CC  1039441453  David Cuadros   EM  50   4 
+CE 1029641463 Ashley Pattie ES 10 20
+CC 74859590 Adolfo Albarracin EM 19 20
+CC 1029651453 David Cuadros ES 8 81
